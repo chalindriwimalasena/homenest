@@ -367,125 +367,192 @@
             <!-- SHOPPING -->
 
             <article class="content-card" id="shopping">
+    <div class="card-header">
+        <div>
+            <p class="section-label">HOUSEHOLD SHOPPING</p>
+            <h2>Shopping list</h2>
+        </div>
+        <button class="add-button" id="addShoppingButton" type="button">+ Add</button>
+    </div>
 
-                <div class="card-header">
+    <div class="shopping-summary">
+        <span id="shoppingCount">4 items to buy</span>
+        <span class="shopping-type-label">Regular & special</span>
+    </div>
 
-                    <div>
-                        <p class="section-label">DON'T FORGET</p>
-                        <h2>Shopping list</h2>
-                    </div>
+    <div class="shopping-list" id="shoppingList">
 
-                    <button class="add-button" type="button">
-                        + Add item
-                    </button>
+        <label class="shopping-item">
+            <input type="checkbox">
+            <span class="checkbox"></span>
 
-                </div>
+            <span class="shopping-details">
+                <strong>Milk</strong>
+                <small>Regular · Groceries</small>
+            </span>
+        </label>
 
+        <label class="shopping-item">
+            <input type="checkbox">
+            <span class="checkbox"></span>
 
-                <div class="shopping-list">
+            <span class="shopping-details">
+                <strong>Washing powder</strong>
+                <small>Regular · Household</small>
+            </span>
+        </label>
 
-                    <label class="shopping-item">
+        <label class="shopping-item">
+            <input type="checkbox">
+            <span class="checkbox"></span>
 
-                        <input type="checkbox">
+            <span class="shopping-details">
+                <strong>Vegetables</strong>
+                <small>Regular · Groceries</small>
+            </span>
+        </label>
 
-                        <span class="checkbox"></span>
+        <label class="shopping-item special-item">
+            <input type="checkbox">
+            <span class="checkbox"></span>
 
-                        <span>Milk</span>
+            <span class="shopping-details">
+                <strong>New bedsheets</strong>
+                <small>Special purchase · Household</small>
+            </span>
+        </label>
 
-                    </label>
-
-
-                    <label class="shopping-item">
-
-                        <input type="checkbox">
-
-                        <span class="checkbox"></span>
-
-                        <span>Washing powder</span>
-
-                    </label>
-
-
-                    <label class="shopping-item">
-
-                        <input type="checkbox">
-
-                        <span class="checkbox"></span>
-
-                        <span>Vegetables</span>
-
-                    </label>
-
-
-                    <label class="shopping-item">
-
-                        <input type="checkbox">
-
-                        <span class="checkbox"></span>
-
-                        <span>Dishwashing liquid</span>
-
-                    </label>
-
-                </div>
-
-            </article>
+    </div>
+</article>
 
 
             <!-- REMINDERS -->
 
-            <article class="content-card" id="reminders">
+           <article class="content-card" id="reminders">
 
-                <div class="card-header">
+    <div class="card-header">
+        <div>
+            <p class="section-label">DON'T FORGET</p>
+            <h2>Reminders</h2>
+        </div>
 
-                    <div>
-                        <p class="section-label">UPCOMING</p>
-                        <h2>Reminders</h2>
-                    </div>
+        <button
+            class="add-button"
+            id="addReminderButton"
+            type="button"
+        >
+            + Add
+        </button>
+    </div>
 
-                    <button class="add-button" type="button">
-                        + Add
-                    </button>
+    <div class="reminder-list" id="reminderList">
 
-                </div>
+        <div class="reminder-item">
+            <div class="reminder-date">
+                <strong>26</strong>
+                <small>SEP</small>
+            </div>
 
+            <div class="reminder-details">
+                <strong>Pay electricity bill</strong>
+                <small>Bill</small>
+            </div>
+        </div>
 
-                <div class="reminder-list">
+        <div class="reminder-item">
+            <div class="reminder-date">
+                <strong>28</strong>
+                <small>SEP</small>
+            </div>
 
-                    <div class="reminder-item">
+            <div class="reminder-details">
+                <strong>Clean water filter</strong>
+                <small>Maintenance</small>
+            </div>
+        </div>
 
-                        <div class="reminder-date">
-                            <strong>26</strong>
-                            <span>SEP</span>
-                        </div>
+    </div>
 
-                        <div class="reminder-details">
-                            <strong>Pay electricity bill</strong>
-                            <small>Tomorrow</small>
-                        </div>
-
-                    </div>
-
-
-                    <div class="reminder-item">
-
-                        <div class="reminder-date">
-                            <strong>28</strong>
-                            <span>SEP</span>
-                        </div>
-
-                        <div class="reminder-details">
-                            <strong>Clean water filter</strong>
-                            <small>Sunday</small>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </article>
+</article>
 
         </section>
+
+        <!-- CALENDAR -->
+<section class="calendar-section" id="calendar">
+
+    <div class="calendar-header">
+
+        <div>
+            <p class="section-label">YOUR MONTH</p>
+            <h2>Calendar</h2>
+        </div>
+
+        <div class="calendar-navigation">
+
+            <button
+                class="calendar-arrow"
+                id="previousMonth"
+                type="button"
+            >
+                ‹
+            </button>
+
+            <strong id="calendarMonth">
+                September 2026
+            </strong>
+
+            <button
+                class="calendar-arrow"
+                id="nextMonth"
+                type="button"
+            >
+                ›
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="calendar-card">
+
+        <div class="calendar-weekdays">
+            <span>Mon</span>
+            <span>Tue</span>
+            <span>Wed</span>
+            <span>Thu</span>
+            <span>Fri</span>
+            <span>Sat</span>
+            <span>Sun</span>
+        </div>
+
+        <div
+            class="calendar-grid"
+            id="calendarGrid"
+        >
+        </div>
+
+    </div>
+
+
+    <div
+        class="calendar-day-details"
+        id="calendarDayDetails"
+    >
+
+        <p class="section-label">SELECTED DAY</p>
+
+        <h3 id="selectedCalendarDate">
+            Select a date
+        </h3>
+
+        <p id="calendarDayMessage">
+            Choose a date to see what's happening.
+        </p>
+
+    </div>
+
+</section>
 
     </main>
 
@@ -776,6 +843,218 @@
 
 </div>
 
+<div class="modal-overlay" id="shoppingModal">
+    <div class="modal">
+
+        <button class="modal-close" id="closeShoppingModal" type="button">×</button>
+
+        <p class="section-label">NEW SHOPPING ITEM</p>
+        <h2>Add to shopping list</h2>
+
+        <p class="modal-description">
+            Add something you need for your home.
+        </p>
+
+        <form id="shoppingForm">
+
+            <div class="form-group">
+                <label for="shoppingName">Item name</label>
+                <input
+                    type="text"
+                    id="shoppingName"
+                    placeholder="e.g. Laundry basket"
+                    required
+                >
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="shoppingCategory">Category</label>
+
+                    <select id="shoppingCategory">
+                        <option value="Groceries">Groceries</option>
+                        <option value="Household">Household</option>
+                        <option value="Cleaning">Cleaning</option>
+                        <option value="Kitchen">Kitchen</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="shoppingType">Type</label>
+
+                    <select id="shoppingType">
+                        <option value="Regular">Regular</option>
+                        <option value="Special purchase">Special purchase</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="shoppingQuantity">Quantity</label>
+
+                <input
+                    type="number"
+                    id="shoppingQuantity"
+                    value="1"
+                    min="1"
+                    required
+                >
+            </div>
+
+            <div class="modal-actions">
+                <button
+                    type="button"
+                    class="cancel-button"
+                    id="cancelShopping"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    Add item
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div class="modal-overlay" id="reminderModal">
+
+    <div class="modal">
+
+        <button
+            class="modal-close"
+            id="closeReminderModal"
+            type="button"
+        >
+            ×
+        </button>
+
+        <p class="section-label">NEW REMINDER</p>
+
+        <h2>Add a reminder</h2>
+
+        <p class="modal-description">
+            Keep track of something important around the home.
+        </p>
+
+        <form id="reminderForm">
+
+            <div class="form-group">
+
+                <label for="reminderName">
+                    Reminder
+                </label>
+
+                <input
+                    type="text"
+                    id="reminderName"
+                    placeholder="e.g. Pay water bill"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="reminderType">
+                        Type
+                    </label>
+
+                    <select id="reminderType">
+
+                        <option value="Bill">
+                            Bill
+                        </option>
+
+                        <option value="Maintenance">
+                            Maintenance
+                        </option>
+
+                        <option value="Personal">
+                            Personal
+                        </option>
+
+                        <option value="Household">
+                            Household
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="reminderDate">
+                        Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="reminderDate"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="reminderNote">
+                    Note
+                </label>
+
+                <textarea
+                    id="reminderNote"
+                    rows="3"
+                    placeholder="Optional note..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-button"
+                    id="cancelReminder"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    Add reminder
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
 
     <!-- JavaScript -->
     <script src="js/script.js"></script>

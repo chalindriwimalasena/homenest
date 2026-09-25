@@ -740,3 +740,865 @@ function getRelativeDay(date) {
     );
 
 }
+
+// ========================================
+// SHOPPING LIST
+// ========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const shoppingModal =
+        document.getElementById("shoppingModal");
+
+    const addShoppingButton =
+        document.getElementById("addShoppingButton");
+
+    const closeShoppingModal =
+        document.getElementById("closeShoppingModal");
+
+    const cancelShopping =
+        document.getElementById("cancelShopping");
+
+    const shoppingForm =
+        document.getElementById("shoppingForm");
+
+    const shoppingList =
+        document.getElementById("shoppingList");
+
+    const shoppingCount =
+        document.getElementById("shoppingCount");
+
+
+    // -----------------------------------------
+    // Find the "Things to buy" number
+    // -----------------------------------------
+
+    const overviewCards =
+        document.querySelectorAll(".overview-card");
+
+    let shoppingOverviewNumber = null;
+
+    overviewCards.forEach((card) => {
+
+        const text = card.textContent.toLowerCase();
+
+        if (text.includes("things to buy")) {
+            shoppingOverviewNumber =
+                card.querySelector("strong");
+        }
+
+    });
+
+
+    // -----------------------------------------
+    // Open shopping modal
+    // -----------------------------------------
+
+    if (addShoppingButton && shoppingModal) {
+
+        addShoppingButton.addEventListener("click", () => {
+
+            shoppingModal.classList.add("show");
+
+            const nameInput =
+                document.getElementById("shoppingName");
+
+            if (nameInput) {
+                nameInput.focus();
+            }
+
+        });
+
+    }
+
+
+    // -----------------------------------------
+    // Close shopping modal
+    // -----------------------------------------
+
+    function closeShopping() {
+
+        if (shoppingModal) {
+            shoppingModal.classList.remove("show");
+        }
+
+    }
+
+
+    if (closeShoppingModal) {
+        closeShoppingModal.addEventListener(
+            "click",
+            closeShopping
+        );
+    }
+
+
+    if (cancelShopping) {
+        cancelShopping.addEventListener(
+            "click",
+            closeShopping
+        );
+    }
+
+
+    // -----------------------------------------
+    // Click outside modal to close
+    // -----------------------------------------
+
+    if (shoppingModal) {
+
+        shoppingModal.addEventListener(
+            "click",
+            (event) => {
+
+                if (event.target === shoppingModal) {
+                    closeShopping();
+                }
+
+            }
+        );
+
+    }
+
+
+    // -----------------------------------------
+    // Add new shopping item
+    // -----------------------------------------
+
+    if (shoppingForm) {
+
+        shoppingForm.addEventListener(
+            "submit",
+            (event) => {
+
+                event.preventDefault();
+
+
+                const name =
+                    document
+                        .getElementById("shoppingName")
+                        .value
+                        .trim();
+
+
+                const category =
+                    document
+                        .getElementById("shoppingCategory")
+                        .value;
+
+
+                const type =
+                    document
+                        .getElementById("shoppingType")
+                        .value;
+
+
+                const quantity =
+                    parseInt(
+                        document
+                            .getElementById("shoppingQuantity")
+                            .value
+                    );
+
+
+                if (!name) {
+                    return;
+                }
+
+
+                // Create new item
+                const item =
+                    document.createElement("label");
+
+                item.className =
+                    "shopping-item";
+
+
+                item.innerHTML = `
+                    <input type="checkbox">
+
+                    <span class="checkbox"></span>
+
+                    <span class="shopping-details">
+
+                        <strong>
+                            ${name}${quantity > 1 ? ` × ${quantity}` : ""}
+                        </strong>
+
+                        <small>
+                            ${type} · ${category}
+                        </small>
+
+                    </span>
+                `;
+
+
+                // Add item to top of list
+                shoppingList.prepend(item);
+
+
+                // Add checkbox behaviour
+                attachShoppingCheckbox(item);
+
+
+                // Update numbers
+                updateShoppingCount();
+
+
+                // Reset form
+                shoppingForm.reset();
+
+                document.getElementById(
+                    "shoppingQuantity"
+                ).value = "1";
+
+
+                // Close modal
+                closeShopping();
+
+            }
+        );
+
+    }
+
+
+    // -----------------------------------------
+    // Shopping checkbox behaviour
+    // -----------------------------------------
+
+    function attachShoppingCheckbox(item) {
+
+        const checkbox =
+            item.querySelector(
+                "input[type='checkbox']"
+            );
+
+
+        if (!checkbox) {
+            return;
+        }
+
+
+        checkbox.addEventListener(
+            "change",
+            () => {
+
+                item.classList.toggle(
+                    "completed",
+                    checkbox.checked
+                );
+
+
+                updateShoppingCount();
+
+            }
+        );
+
+    }
+
+
+    // -----------------------------------------
+    // Update shopping numbers
+    // -----------------------------------------
+
+    function updateShoppingCount() {
+
+        if (!shoppingList) {
+            return;
+        }
+
+
+        const items =
+            shoppingList.querySelectorAll(
+                ".shopping-item"
+            );
+
+
+        let remaining = 0;
+
+
+        items.forEach((item) => {
+
+            const checkbox =
+                item.querySelector(
+                    "input[type='checkbox']"
+                );
+
+
+            if (checkbox && !checkbox.checked) {
+                remaining++;
+            }
+
+        });
+
+
+        // Number inside Shopping card
+        if (shoppingCount) {
+
+            shoppingCount.textContent =
+                `${remaining} ${
+                    remaining === 1
+                        ? "item"
+                        : "items"
+                } to buy`;
+
+        }
+
+
+        // Number in top overview card
+        if (shoppingOverviewNumber) {
+
+            shoppingOverviewNumber.textContent =
+                remaining;
+
+        }
+
+    }
+
+
+    // -----------------------------------------
+    // Existing shopping items
+    // -----------------------------------------
+
+    document
+        .querySelectorAll(".shopping-item")
+        .forEach((item) => {
+
+            attachShoppingCheckbox(item);
+
+        });
+
+
+    // Set initial count
+    updateShoppingCount();
+
+});
+
+// ========================================
+// REMINDERS
+// ========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const reminderModal =
+        document.getElementById("reminderModal");
+
+    const addReminderButton =
+        document.getElementById("addReminderButton");
+
+    const closeReminderModal =
+        document.getElementById("closeReminderModal");
+
+    const cancelReminder =
+        document.getElementById("cancelReminder");
+
+    const reminderForm =
+        document.getElementById("reminderForm");
+
+    const reminderList =
+        document.getElementById("reminderList");
+
+
+    // -----------------------------------------
+    // Find top Reminders number
+    // -----------------------------------------
+
+    const overviewCards =
+        document.querySelectorAll(".overview-card");
+
+    let reminderOverviewNumber = null;
+
+    overviewCards.forEach((card) => {
+
+        const text =
+            card.textContent.toLowerCase();
+
+        if (text.includes("reminders")) {
+
+            reminderOverviewNumber =
+                card.querySelector("strong");
+
+        }
+
+    });
+
+
+    // -----------------------------------------
+    // Open modal
+    // -----------------------------------------
+
+    if (addReminderButton && reminderModal) {
+
+        addReminderButton.addEventListener(
+            "click",
+            () => {
+
+                reminderModal.classList.add("show");
+
+                document
+                    .getElementById("reminderName")
+                    .focus();
+
+            }
+        );
+
+    }
+
+
+    // -----------------------------------------
+    // Close modal
+    // -----------------------------------------
+
+    function closeReminder() {
+
+        reminderModal.classList.remove("show");
+
+    }
+
+
+    if (closeReminderModal) {
+
+        closeReminderModal.addEventListener(
+            "click",
+            closeReminder
+        );
+
+    }
+
+
+    if (cancelReminder) {
+
+        cancelReminder.addEventListener(
+            "click",
+            closeReminder
+        );
+
+    }
+
+
+    // -----------------------------------------
+    // Click outside modal
+    // -----------------------------------------
+
+    if (reminderModal) {
+
+        reminderModal.addEventListener(
+            "click",
+            (event) => {
+
+                if (event.target === reminderModal) {
+                    closeReminder();
+                }
+
+            }
+        );
+
+    }
+
+
+    // -----------------------------------------
+    // Add reminder
+    // -----------------------------------------
+
+    if (reminderForm) {
+
+        reminderForm.addEventListener(
+            "submit",
+            (event) => {
+
+                event.preventDefault();
+
+
+                const name =
+                    document
+                        .getElementById("reminderName")
+                        .value
+                        .trim();
+
+
+                const type =
+                    document
+                        .getElementById("reminderType")
+                        .value;
+
+
+                const dateValue =
+                    document
+                        .getElementById("reminderDate")
+                        .value;
+
+
+                if (!name || !dateValue) {
+                    return;
+                }
+
+
+                const date =
+                    new Date(
+                        dateValue + "T00:00:00"
+                    );
+
+
+                const day =
+                    date.getDate();
+
+
+                const month =
+                    date.toLocaleDateString(
+                        "en-US",
+                        {
+                            month: "short"
+                        }
+                    ).toUpperCase();
+
+
+                // Create reminder
+                const reminder =
+                    document.createElement("div");
+
+
+                reminder.className =
+                    "reminder-item";
+
+
+                reminder.innerHTML = `
+
+                    <div class="reminder-date">
+
+                        <strong>
+                            ${day}
+                        </strong>
+
+                        <small>
+                            ${month}
+                        </small>
+
+                    </div>
+
+
+                    <div class="reminder-details">
+
+                        <strong>
+                            ${name}
+                        </strong>
+
+                        <small>
+                            ${type}
+                        </small>
+
+                    </div>
+
+                `;
+
+
+                // Add newest reminder to top
+                reminderList.prepend(reminder);
+
+
+                // Update number
+                updateReminderCount();
+
+
+                // Reset form
+                reminderForm.reset();
+
+
+                // Close modal
+                closeReminder();
+
+            }
+        );
+
+    }
+
+
+    // -----------------------------------------
+    // Update top number
+    // -----------------------------------------
+
+    function updateReminderCount() {
+
+        const reminders =
+            reminderList.querySelectorAll(
+                ".reminder-item"
+            );
+
+
+        if (reminderOverviewNumber) {
+
+            reminderOverviewNumber.textContent =
+                reminders.length;
+
+        }
+
+    }
+
+
+    // Initial count
+    updateReminderCount();
+
+});
+
+// ========================================
+// CALENDAR
+// ========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const calendarGrid =
+        document.getElementById("calendarGrid");
+
+    const calendarMonth =
+        document.getElementById("calendarMonth");
+
+    const previousMonth =
+        document.getElementById("previousMonth");
+
+    const nextMonth =
+        document.getElementById("nextMonth");
+
+    const selectedCalendarDate =
+        document.getElementById("selectedCalendarDate");
+
+    const calendarDayMessage =
+        document.getElementById("calendarDayMessage");
+
+
+    let calendarDate = new Date();
+
+    let selectedDate = null;
+
+
+    // -----------------------------------------
+    // Render calendar
+    // -----------------------------------------
+
+    function renderCalendar() {
+
+        calendarGrid.innerHTML = "";
+
+
+        const year =
+            calendarDate.getFullYear();
+
+        const month =
+            calendarDate.getMonth();
+
+
+        calendarMonth.textContent =
+            calendarDate.toLocaleDateString(
+                "en-US",
+                {
+                    month: "long",
+                    year: "numeric"
+                }
+            );
+
+
+        // First day of month
+        const firstDay =
+            new Date(
+                year,
+                month,
+                1
+            );
+
+
+        // Number of days
+        const daysInMonth =
+            new Date(
+                year,
+                month + 1,
+                0
+            ).getDate();
+
+
+        // Convert Sunday = 0 to Monday = 0
+        let startingDay =
+            firstDay.getDay();
+
+        startingDay =
+            startingDay === 0
+                ? 6
+                : startingDay - 1;
+
+
+        // Empty cells before first day
+        for (
+            let i = 0;
+            i < startingDay;
+            i++
+        ) {
+
+            const emptyDay =
+                document.createElement("div");
+
+            emptyDay.className =
+                "calendar-day empty";
+
+            calendarGrid.appendChild(
+                emptyDay
+            );
+
+        }
+
+
+        // Create days
+        for (
+            let day = 1;
+            day <= daysInMonth;
+            day++
+        ) {
+
+            const button =
+                document.createElement("button");
+
+            button.type = "button";
+
+            button.className =
+                "calendar-day";
+
+
+            const number =
+                document.createElement("span");
+
+            number.className =
+                "calendar-day-number";
+
+            number.textContent = day;
+
+
+            button.appendChild(number);
+
+
+            // Check today's date
+            const today =
+                new Date();
+
+
+            if (
+                day === today.getDate() &&
+                month === today.getMonth() &&
+                year === today.getFullYear()
+            ) {
+
+                button.classList.add(
+                    "today"
+                );
+
+            }
+
+
+            // Select date
+            button.addEventListener(
+                "click",
+                () => {
+
+                    document
+                        .querySelectorAll(
+                            ".calendar-day.selected"
+                        )
+                        .forEach((item) => {
+                            item.classList.remove(
+                                "selected"
+                            );
+                        });
+
+
+                    button.classList.add(
+                        "selected"
+                    );
+
+
+                    selectedDate =
+                        new Date(
+                            year,
+                            month,
+                            day
+                        );
+
+
+                    showSelectedDate();
+
+                }
+            );
+
+
+            calendarGrid.appendChild(
+                button
+            );
+
+        }
+
+    }
+
+
+    // -----------------------------------------
+    // Selected date information
+    // -----------------------------------------
+
+    function showSelectedDate() {
+
+        if (!selectedDate) {
+            return;
+        }
+
+
+        selectedCalendarDate.textContent =
+            selectedDate.toLocaleDateString(
+                "en-US",
+                {
+                    weekday: "long",
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric"
+                }
+            );
+
+
+        calendarDayMessage.textContent =
+            "Your home activities for this day will appear here.";
+
+    }
+
+
+    // -----------------------------------------
+    // Previous month
+    // -----------------------------------------
+
+    previousMonth.addEventListener(
+        "click",
+        () => {
+
+            calendarDate.setMonth(
+                calendarDate.getMonth() - 1
+            );
+
+            renderCalendar();
+
+        }
+    );
+
+
+    // -----------------------------------------
+    // Next month
+    // -----------------------------------------
+
+    nextMonth.addEventListener(
+        "click",
+        () => {
+
+            calendarDate.setMonth(
+                calendarDate.getMonth() + 1
+            );
+
+            renderCalendar();
+
+        }
+    );
+
+
+    // Initial calendar
+    renderCalendar();
+
+});
