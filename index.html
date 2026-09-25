@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HomeNest | Your Daily Home Companion</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <header class="navbar">
+
+        <a href="#" class="logo">
+            <span class="logo-icon">⌂</span>
+            <span class="logo-text">HomeNest</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="#today" class="active">Today</a>
+            <a href="#tasks">Tasks</a>
+            <a href="#expenses">Expenses</a>
+            <a href="#shopping">Shopping</a>
+            <a href="#reminders">Reminders</a>
+        </nav>
+
+        <button class="profile-button" type="button" aria-label="Profile">
+            <span>CH</span>
+        </button>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main>
+
+        <!-- Welcome -->
+        <section class="welcome-section" id="today">
+
+            <div class="welcome-content">
+
+                <p class="date-label">
+                    THURSDAY · SEPTEMBER 25, 2026
+                </p>
+
+                <h1>
+                    Good morning,<br>
+                    <span>welcome home.</span>
+                </h1>
+
+                <p class="welcome-text">
+                    A little space to keep track of the things
+                    that make your home feel cared for.
+                </p>
+
+            </div>
+
+            <div class="welcome-decoration">
+                <div class="leaf leaf-one"></div>
+                <div class="leaf leaf-two"></div>
+                <div class="leaf leaf-three"></div>
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             QUICK OVERVIEW
+        ========================== -->
+
+        <section class="overview-grid">
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    ✓
+                </div>
+
+                <div>
+                    <p>Tasks today</p>
+                    <strong>5</strong>
+                </div>
+
+            </div>
+
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    Rs.
+                </div>
+
+                <div>
+                    <p>Spent today</p>
+                    <strong>2,720</strong>
+                </div>
+
+            </div>
+
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    +
+                </div>
+
+                <div>
+                    <p>Things to buy</p>
+                    <strong>4</strong>
+                </div>
+
+            </div>
+
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    ◷
+                </div>
+
+                <div>
+                    <p>Reminders</p>
+                    <strong>2</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CONTENT GRID
+        ========================== -->
+
+        <section class="content-grid">
+
+
+            <!-- TASKS -->
+
+            <article class="content-card" id="tasks">
+
+                <div class="card-header">
+
+                    <div>
+                        <p class="section-label">FOR TODAY</p>
+                        <h2>Household tasks</h2>
+                    </div>
+
+                    <button class="add-button" type="button">
+                        + Add task
+                    </button>
+
+                </div>
+
+
+                <div class="task-list">
+
+                    <label class="task-item completed">
+
+                        <input type="checkbox" checked>
+
+                        <span class="checkbox"></span>
+
+                        <span class="task-details">
+                            <strong>Do the laundry</strong>
+                            <small>Household</small>
+                        </span>
+
+                    </label>
+
+
+                    <label class="task-item">
+
+                        <input type="checkbox">
+
+                        <span class="checkbox"></span>
+
+                        <span class="task-details">
+                            <strong>Clean the kitchen</strong>
+                            <small>Cleaning</small>
+                        </span>
+
+                    </label>
+
+
+                    <label class="task-item">
+
+                        <input type="checkbox">
+
+                        <span class="checkbox"></span>
+
+                        <span class="task-details">
+                            <strong>Water the plants</strong>
+                            <small>Daily</small>
+                        </span>
+
+                    </label>
+
+
+                    <label class="task-item">
+
+                        <input type="checkbox">
+
+                        <span class="checkbox"></span>
+
+                        <span class="task-details">
+                            <strong>Change bed sheets</strong>
+                            <small>Weekly</small>
+                        </span>
+
+                    </label>
+
+                </div>
+
+            </article>
+
+
+            <!-- EXPENSES -->
+
+           <!-- =========================
+     EXPENSES
+========================== -->
+
+<article class="content-card" id="expenses">
+
+    <div class="card-header">
+
+        <div>
+            <p class="section-label">DAILY SPENDING</p>
+            <h2>Expenses</h2>
+        </div>
+
+        <button
+            class="add-button"
+            id="addExpenseButton"
+            type="button"
+        >
+            + Add
+        </button>
+
+    </div>
+
+
+    <!-- Date selector -->
+
+    <div class="expense-date">
+
+        <button
+            class="date-arrow"
+            id="previousDay"
+            type="button"
+            aria-label="Previous day"
+        >
+            ‹
+        </button>
+
+        <div>
+            <strong id="expenseDate">
+                September 25, 2026
+            </strong>
+
+            <small id="expenseDay">
+                Today
+            </small>
+        </div>
+
+        <button
+            class="date-arrow"
+            id="nextDay"
+            type="button"
+            aria-label="Next day"
+        >
+            ›
+        </button>
+
+    </div>
+
+
+    <!-- Daily total -->
+
+    <div class="expense-summary">
+
+        <span>Daily total</span>
+
+        <strong id="dailyExpenseTotal">
+            Rs. 2,720
+        </strong>
+
+    </div>
+
+
+    <!-- Expense list -->
+
+    <div
+        class="expense-list"
+        id="expenseList"
+    >
+
+        <div class="expense-item">
+
+            <div>
+                <strong>Groceries</strong>
+                <small>Food & household</small>
+            </div>
+
+            <span>Rs. 1,850</span>
+
+        </div>
+
+
+        <div class="expense-item">
+
+            <div>
+                <strong>Breakfast</strong>
+                <small>Food</small>
+            </div>
+
+            <span>Rs. 450</span>
+
+        </div>
+
+
+        <div class="expense-item">
+
+            <div>
+                <strong>Transport</strong>
+                <small>Travel</small>
+            </div>
+
+            <span>Rs. 120</span>
+
+        </div>
+
+
+        <div class="expense-item">
+
+            <div>
+                <strong>Coffee</strong>
+                <small>Food</small>
+            </div>
+
+            <span>Rs. 300</span>
+
+        </div>
+
+    </div>
+
+</article>
+
+
+            <!-- SHOPPING -->
+
+            <article class="content-card" id="shopping">
+
+                <div class="card-header">
+
+                    <div>
+                        <p class="section-label">DON'T FORGET</p>
+                        <h2>Shopping list</h2>
+                    </div>
+
+                    <button class="add-button" type="button">
+                        + Add item
+                    </button>
+
+                </div>
+
+
+                <div class="shopping-list">
+
+                    <label class="shopping-item">
+
+                        <input type="checkbox">
+
+                        <span class="checkbox"></span>
+
+                        <span>Milk</span>
+
+                    </label>
+
+
+                    <label class="shopping-item">
+
+                        <input type="checkbox">
+
+                        <span class="checkbox"></span>
+
+                        <span>Washing powder</span>
+
+                    </label>
+
+
+                    <label class="shopping-item">
+
+                        <input type="checkbox">
+
+                        <span class="checkbox"></span>
+
+                        <span>Vegetables</span>
+
+                    </label>
+
+
+                    <label class="shopping-item">
+
+                        <input type="checkbox">
+
+                        <span class="checkbox"></span>
+
+                        <span>Dishwashing liquid</span>
+
+                    </label>
+
+                </div>
+
+            </article>
+
+
+            <!-- REMINDERS -->
+
+            <article class="content-card" id="reminders">
+
+                <div class="card-header">
+
+                    <div>
+                        <p class="section-label">UPCOMING</p>
+                        <h2>Reminders</h2>
+                    </div>
+
+                    <button class="add-button" type="button">
+                        + Add
+                    </button>
+
+                </div>
+
+
+                <div class="reminder-list">
+
+                    <div class="reminder-item">
+
+                        <div class="reminder-date">
+                            <strong>26</strong>
+                            <span>SEP</span>
+                        </div>
+
+                        <div class="reminder-details">
+                            <strong>Pay electricity bill</strong>
+                            <small>Tomorrow</small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="reminder-item">
+
+                        <div class="reminder-date">
+                            <strong>28</strong>
+                            <span>SEP</span>
+                        </div>
+
+                        <div class="reminder-details">
+                            <strong>Clean water filter</strong>
+                            <small>Sunday</small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+        <p>HomeNest · A calmer way to care for your home.</p>
+    </footer>
+
+    <!-- =========================
+     ADD TASK MODAL
+========================== -->
+
+<div class="modal-overlay" id="taskModal">
+
+    <div class="modal">
+
+        <button class="modal-close" id="closeTaskModal" type="button">
+            ×
+        </button>
+
+        <p class="section-label">NEW TASK</p>
+
+        <h2>Add a household task</h2>
+
+        <p class="modal-description">
+            Add something you would like to take care of.
+        </p>
+
+        <form id="taskForm">
+
+            <div class="form-group">
+
+                <label for="taskName">
+                    Task name
+                </label>
+
+                <input
+                    type="text"
+                    id="taskName"
+                    placeholder="e.g. Clean the balcony"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="taskCategory">
+                        Category
+                    </label>
+
+                    <select id="taskCategory">
+
+                        <option value="Cleaning">
+                            Cleaning
+                        </option>
+
+                        <option value="Household">
+                            Household
+                        </option>
+
+                        <option value="Maintenance">
+                            Maintenance
+                        </option>
+
+                        <option value="Plants">
+                            Plants
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="taskDate">
+                        Due date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="taskDate"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-button"
+                    id="cancelTask"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    Add task
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     ADD EXPENSE MODAL
+========================== -->
+
+<div
+    class="modal-overlay"
+    id="expenseModal"
+>
+
+    <div class="modal">
+
+        <button
+            class="modal-close"
+            id="closeExpenseModal"
+            type="button"
+        >
+            ×
+        </button>
+
+
+        <p class="section-label">
+            NEW EXPENSE
+        </p>
+
+        <h2>Add today's expense</h2>
+
+        <p class="modal-description">
+            Keep track of where your money goes.
+        </p>
+
+
+        <form id="expenseForm">
+
+
+            <!-- Expense name -->
+
+            <div class="form-group">
+
+                <label for="expenseName">
+                    What did you spend on?
+                </label>
+
+                <input
+                    type="text"
+                    id="expenseName"
+                    placeholder="e.g. Groceries"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Category -->
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="expenseCategory">
+                        Category
+                    </label>
+
+                    <select id="expenseCategory">
+
+                        <option value="Food">
+                            Food
+                        </option>
+
+                        <option value="Groceries">
+                            Groceries
+                        </option>
+
+                        <option value="Transport">
+                            Transport
+                        </option>
+
+                        <option value="Utilities">
+                            Utilities
+                        </option>
+
+                        <option value="Shopping">
+                            Shopping
+                        </option>
+
+                        <option value="Household">
+                            Household
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Amount -->
+
+                <div class="form-group">
+
+                    <label for="expenseAmount">
+                        Amount (Rs.)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="expenseAmount"
+                        placeholder="0.00"
+                        min="0.01"
+                        step="0.01"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Date -->
+
+            <div class="form-group">
+
+                <label for="expenseInputDate">
+                    Date
+                </label>
+
+                <input
+                    type="date"
+                    id="expenseInputDate"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Buttons -->
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-button"
+                    id="cancelExpense"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    Add expense
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
